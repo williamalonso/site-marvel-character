@@ -1,4 +1,6 @@
+import CardsCharactersComponent from './components/CardsCharacters/CardsCharactersComponent';
 import './index.css';
+import React from 'react';
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <CardsCharactersComponent></CardsCharactersComponent>
     </div>
   );
 }
