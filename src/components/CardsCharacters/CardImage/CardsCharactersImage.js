@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 const CardsCharactersImage = styled.img`
   width: 100%;
-  max-width: 100px;
+  border-radius: 8px;
+  margin: 0 auto;
 `;
 
 export default CardsCharactersImage;

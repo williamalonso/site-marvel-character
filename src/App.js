@@ -1,11 +1,15 @@
-import CardsCharactersComponent from './components/CardsCharacters/CardsCharactersComponent';
+import ContentComponent from './components/Content/ContentComponent';
+import FooterComponent from './components/Footer/FooterComponent';
+import NavbarComponent from './components/Navbar/NavbarComponent';
 import './index.css';
 import React from 'react';
 
 function App() {
   return (
     <div className="App">
-      <CardsCharactersComponent></CardsCharactersComponent>
+      <NavbarComponent></NavbarComponent>
+      <ContentComponent></ContentComponent>
+      <FooterComponent></FooterComponent>
     </div>
   );
 }

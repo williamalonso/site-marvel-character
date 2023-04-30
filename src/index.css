@@ -1,16 +1,13 @@
 * {
-  background-color: #6D214F;
+  background-color: var(--secondaryColor);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 :root {
-  --card-height: 75vh;
-  --card-width: calc(var(--card-height) / 1.5);
+  --card-height: 45rem;
+  --card-width: 20rem;
+  --primaryColor: #192a56;
+  --secondaryColor: #273c75;
   --white: #fff;
-}
-@property --rotate {
-  syntax: "<angle>";
-  initial-value: 132deg;
-  inherits: false;
 }

@@ -8,37 +8,63 @@ import CardsCharactersImage from "./CardImage/CardsCharactersImage";
 class CardsCharactersComponent extends Component {
 
   state = {
-    characters: [
-      {}
-    ]
+    characters: []
   }
 
   async componentDidMount() {
 
-    const characters_api = await api.get('v1/public/characters?name=Iron%20Man&apikey=798484f909a832aadb41f2d0216867aa');
+    const ironMan_api = await api.get('v1/public/characters?name=Iron%20Man&apikey=798484f909a832aadb41f2d0216867aa');
+    const captainAmerica_api = await api.get('v1/public/characters?name=Captain%20America&apikey=798484f909a832aadb41f2d0216867aa');
+    const thor_api = await api.get('v1/public/characters?name=Thor&apikey=798484f909a832aadb41f2d0216867aa');
 
-    const image = characters_api.data.data.results[0].thumbnail.path + '.' + characters_api.data.data.results[0].thumbnail.extension;
-    const name = characters_api.data.data.results[0].name;
-    const description = characters_api.data.data.results[0].description;
+    const ironMan = {
+      image: ironMan_api.data.data.results[0].thumbnail.path + '.' + ironMan_api.data.data.results[0].thumbnail.extension,
+      name: ironMan_api.data.data.results[0].name,
+      description: ironMan_api.data.data.results[0].description
+    }
+
+    const captainAmerica = {
+      image: captainAmerica_api.data.data.results[0].thumbnail.path + '.' + captainAmerica_api.data.data.results[0].thumbnail.extension,
+      name: captainAmerica_api.data.data.results[0].name,
+      description: captainAmerica_api.data.data.results[0].description
+    };
+
+    const Thor = {
+      image: thor_api.data.data.results[0].thumbnail.path + '.' + thor_api.data.data.results[0].thumbnail.extension,
+      name: thor_api.data.data.results[0].name,
+      description: thor_api.data.data.results[0].description
+    };
+
+    const characters = [
+      { id: 0, character: ironMan },
+      { id: 1, character: captainAmerica },
+      { id: 2, character: Thor }
+    ];
     
-    this.setState({ characters: {image, name, description} });
+    this.setState({ characters });
 
   }
 
   render() {
 
-    const name = this.state.characters.name;
-    const image = this.state.characters.image;
-    const description = this.state.characters.description;
+    const characters = this.state.characters;
+    const characterCards = [];
 
-    return(
-      <CardsCharactersContainer>
-        <CardsCharactersImage src={image} alt="Imagem do Personagem"></CardsCharactersImage>
-        <CardsCharactersName>{name}</CardsCharactersName>
-        <CardsCharactersDetail>{description}</CardsCharactersDetail>
-      </CardsCharactersContainer>
+    for(let i=0; i< characters.length; i++) {
+      characterCards.push(
+        <CardsCharactersContainer key={i}>
+          <CardsCharactersImage src={characters[i].character.image} alt="Imagem do Personagem"></CardsCharactersImage>
+          <CardsCharactersName>{characters[i].character.name}</CardsCharactersName>
+          <CardsCharactersDetail>{characters[i].character.description}</CardsCharactersDetail>
+        </CardsCharactersContainer>
+      );
+    }
+  
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+        {characterCards}
+      </div>
     );
-
   }
 }
 
