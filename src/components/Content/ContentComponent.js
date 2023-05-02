@@ -1,21 +1,15 @@
-import styled from "styled-components";
 import CardsCharactersComponent from "../CardsCharacters/CardsCharactersComponent";
 import React from "react";
-
-const ContentContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-`;
+import NavbarComponent from "../Navbar/NavbarComponent";
+import FooterComponent from "../Footer/FooterComponent";
 
 const ContentComponent = () => {
   return(
-    <ContentContainer>
+    <>
+      <NavbarComponent></NavbarComponent>
       <CardsCharactersComponent></CardsCharactersComponent>
-    </ContentContainer>
+      <FooterComponent></FooterComponent>
+    </>
   );
 }
 

@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
-import CardsCharactersComponent from "./components/CardsCharacters/CardsCharactersComponent";
+import ContentComponent from "./components/Content/ContentComponent";
 
 const Rota = () => {
   return(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}></Route>
-        <Route path="/avengers" element={<CardsCharactersComponent />}></Route>
+        <Route path="/avengers" element={<ContentComponent />}></Route>
       </Routes>
     </BrowserRouter>
   )

@@ -1,4 +1,4 @@
-import ContentComponent from './components/Content/ContentComponent';
+import CardsComicsComponent from './components/CardsComics/CardsComicsComponent';
 import FooterComponent from './components/Footer/FooterComponent';
 import NavbarComponent from './components/Navbar/NavbarComponent';
 import './index.css';
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <NavbarComponent></NavbarComponent>
-      <ContentComponent></ContentComponent>
+      <CardsComicsComponent></CardsComicsComponent>
       <FooterComponent></FooterComponent>
     </div>
   );

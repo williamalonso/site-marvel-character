@@ -62,9 +62,10 @@ class CardsCharactersComponent extends Component {
   
     return (
       <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
-        {characterCards}
+      {characterCards}
       </div>
     );
+      
   }
 }
 
