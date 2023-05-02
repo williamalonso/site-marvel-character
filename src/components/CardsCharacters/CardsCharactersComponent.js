@@ -8,7 +8,8 @@ import CardsCharactersImage from "./CardImage/CardsCharactersImage";
 class CardsCharactersComponent extends Component {
 
   state = {
-    characters: []
+    characters: [],
+    isLoading: true
   }
 
   async componentDidMount() {
@@ -41,7 +42,7 @@ class CardsCharactersComponent extends Component {
       { id: 2, character: Thor }
     ];
     
-    this.setState({ characters });
+    this.setState({ characters, isLoading: false });
 
   }
 
@@ -61,9 +62,18 @@ class CardsCharactersComponent extends Component {
     }
   
     return (
-      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
-      {characterCards}
-      </div>
+      <>
+      {
+        this.state.isLoading ? 
+        (
+          <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}><i className="fas fa-spinner fa-spin fa-3x"></i></div>
+        ) : (
+          <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
+          {characterCards}
+          </div>
+        )
+      }
+      </>
     );
       
   }
