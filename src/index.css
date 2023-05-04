@@ -5,7 +5,7 @@
   padding: 0;
 }
 :root {
-  --card-height: 35rem;
+  --card-height: 30rem;
   --card-width: 20rem;
   --primaryColor: #192a56;
   --secondaryColor: #273c75;

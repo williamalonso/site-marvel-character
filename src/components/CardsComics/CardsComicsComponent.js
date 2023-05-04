@@ -32,7 +32,7 @@ class CardsComicsComponent extends Component {
         </CardsCharactersContainer>
       );
     }
-    
+    console.log(this.state.comics);
     return(
       <>
       {
@@ -40,7 +40,7 @@ class CardsComicsComponent extends Component {
         (
           <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}><i className="fas fa-spinner fa-spin fa-3x"></i></div> 
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', flexWrap: 'wrap', }}>
             {comicsArr}
           </div>
         )

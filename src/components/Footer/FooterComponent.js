@@ -8,6 +8,7 @@ const FooterContainer = styled.div`
   color: var(--white);
   background-color: var(--primaryColor);
   padding: 2rem;
+  margin-top: 5rem;
 `;
 
 const FooterComponent = () => {
