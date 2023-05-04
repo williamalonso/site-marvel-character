@@ -1,9 +1,3 @@
-* {
-  background-color: var(--secondaryColor);
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 :root {
   --card-height: 30rem;
   --card-width: 20rem;
@@ -11,6 +5,13 @@
   --secondaryColor: #273c75;
   --white: #fff;
   --lightGrey: #CCCCCC;
+  --headline: #FC6D6D;
+}
+* {
+  background-color: var(--secondaryColor);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* ===== Scroll Bar ===== */
