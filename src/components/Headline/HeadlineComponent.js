@@ -41,7 +41,7 @@ const DynamicTxt = styled.div`
       left: 0;
       background-color: var(--secondaryColor);
       border-left: 2px solid var(--headline);
-      animation: typing 1.5s steps(6) infinite;
+      animation: typing 1.5s steps(8) infinite;
       @keyframes typing {
         100% {
           left: 100%;
