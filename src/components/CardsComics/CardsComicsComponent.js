@@ -32,7 +32,7 @@ class CardsComicsComponent extends Component {
         </CardsCharactersContainer>
       );
     }
-    console.log(this.state.comics);
+    
     return(
       <>
       {
