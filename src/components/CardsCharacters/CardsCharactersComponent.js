@@ -4,6 +4,9 @@ import CardsCharactersName from "./CardName/CardsCharactersName";
 import CardsCharactersDetail from "./CardDetail/CardsCharactersDetail";
 import CardsCharactersContainer from "./CardContainer/CardsCharactersContainer";
 import CardsCharactersImage from "./CardImage/CardsCharactersImage";
+import Flipper from "./Flipper/Flipper";
+import Front from "./Front/Front";
+import Back from "./Back/Back";
 
 class CardsCharactersComponent extends Component {
 
@@ -54,9 +57,15 @@ class CardsCharactersComponent extends Component {
     for(let i=0; i< characters.length; i++) {
       characterCards.push(
         <CardsCharactersContainer key={i}>
-          <CardsCharactersImage src={characters[i].character.image} alt="Imagem do Personagem"></CardsCharactersImage>
-          <CardsCharactersName>{characters[i].character.name}</CardsCharactersName>
-          <CardsCharactersDetail>{characters[i].character.description}</CardsCharactersDetail>
+          <Flipper>
+            <Front>
+              <CardsCharactersImage src={characters[i].character.image} alt="Imagem do Personagem"></CardsCharactersImage>
+            </Front>
+            <Back>
+              <CardsCharactersName>{characters[i].character.name}</CardsCharactersName>
+              <CardsCharactersDetail>{characters[i].character.description}</CardsCharactersDetail>
+            </Back>
+          </Flipper>
         </CardsCharactersContainer>
       );
     }

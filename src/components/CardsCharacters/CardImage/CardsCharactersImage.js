@@ -6,7 +6,6 @@ const CardsCharactersImage = styled.img`
   margin: auto;
   height: 100%;
   width: auto;
-  opacity: 1;
 `;
 
 export default CardsCharactersImage;
