@@ -5,7 +5,7 @@ const CardsCharactersImage = styled.img`
   border-radius: 8px;
   margin: auto;
   height: 100%;
-  width: auto;
+  width: 100%;
 `;
 
 export default CardsCharactersImage;
