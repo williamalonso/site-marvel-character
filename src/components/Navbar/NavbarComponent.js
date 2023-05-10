@@ -32,7 +32,7 @@ const NavbarComponent = () => {
   return(
     <NavbarContainer>
       <StyledLink to="/">
-        Início
+        Comics
       </StyledLink>
       <StyledLink to="/avengers">
         Vingadores
