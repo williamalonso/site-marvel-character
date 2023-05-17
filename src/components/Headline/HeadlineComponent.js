@@ -16,19 +16,13 @@ const StaticTxt = styled.div`
 const DynamicTxt = styled.div`
   margin-left: 1rem;
   height: 68px;
-  overflow: hidden;
+  /* overflow: hidden; */
   & li {
     list-style: none ;
     font-weight: 500;
     color: var(--headline);
     position: relative;
     top: 0;
-    animation: slide 3s steps(2) infinite;
-    @keyframes slide {
-      100% {
-        top: -140px;
-      }
-    }
     & span {
       position: relative;
       padding-top: 1px;
@@ -57,7 +51,6 @@ const HeadlineComponent = (props) => {
     <Wrapper>
       <StaticTxt>{props.static}</StaticTxt>
       <DynamicTxt>
-        <li><span>{props.txt}</span></li>
         <li><span>{props.txt}</span></li>
       </DynamicTxt>
     </Wrapper>
