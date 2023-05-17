@@ -16,7 +16,7 @@ const StaticTxt = styled.div`
 const DynamicTxt = styled.div`
   margin-left: 1rem;
   height: 68px;
-  /* overflow: hidden; */
+  overflow: hidden;
   & li {
     list-style: none ;
     font-weight: 500;
