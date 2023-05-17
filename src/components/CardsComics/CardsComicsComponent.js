@@ -24,23 +24,6 @@ class CardsComicsComponent extends Component {
   }
 
   render() {
-    const comicsArr = [];
-    for( let i = 0 ; i < this.state.comics.length; i++ ) {
-      const image = this.state.comics[i].thumbnail ? this.state.comics[i].thumbnail.path + '.' + this.state.comics[i].thumbnail.extension : null;
-      const title = this.state.comics[i].title;
-      comicsArr.push(
-        <CardsCharactersContainer key={i}>
-          <Flipper>
-            <Front>
-              <CardsCharactersImage src={image} alt="Imagem do Comics"></CardsCharactersImage>
-            </Front>
-            <Back>
-              <CardsCharactersName>{title}</CardsCharactersName>
-            </Back>
-          </Flipper>
-        </CardsCharactersContainer>
-      );
-    }
     
     return(
       <>
@@ -50,7 +33,24 @@ class CardsComicsComponent extends Component {
           <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}><i className="fas fa-spinner fa-spin fa-3x"></i></div> 
         ) : (
           <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', flexWrap: 'wrap' }}>
-            {comicsArr}
+            {
+              this.state.comics.map( (item, index) => {
+                const image = item.thumbnail ? item.thumbnail.path + '.' + item.thumbnail.extension : null;
+                const title = item.title;
+                return(
+                  <CardsCharactersContainer key={index}>
+                    <Flipper>
+                      <Front>
+                        <CardsCharactersImage src={image} alt="Imagem do Comics"></CardsCharactersImage>
+                      </Front>
+                      <Back>
+                        <CardsCharactersName>{title}</CardsCharactersName>
+                      </Back>
+                    </Flipper>
+                  </CardsCharactersContainer>
+                );
+              })
+            }
           </div>
         )
       }
