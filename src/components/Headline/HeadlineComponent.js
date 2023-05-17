@@ -5,9 +5,14 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   height: 5rem;
   font-size: 60px;
   margin-top: 3rem;
+  @media (max-width: 600px) {
+    margin-bottom: 2rem;
+    font-size: 46px;
+  }
 `;
 const StaticTxt = styled.div`
   color: var(--white);
@@ -17,6 +22,9 @@ const DynamicTxt = styled.div`
   margin-left: 1rem;
   height: 68px;
   overflow: hidden;
+  @media (max-width: 600px) {
+    height: 54px;
+  }
   & li {
     list-style: none ;
     font-weight: 500;
