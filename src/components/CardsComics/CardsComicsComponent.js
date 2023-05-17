@@ -11,11 +11,12 @@ class CardsComicsComponent extends Component {
 
   state = {
     comics: [],
-    isLoading: true
+    isLoading: true,
+    itemsPerPage: 16,
   }
 
   async componentDidMount() {
-    const marvel_comics = await api.get(`v1/public/comics?apikey=798484f909a832aadb41f2d0216867aa`);
+    const marvel_comics = await api.get(`v1/public/comics?limit=32&apikey=798484f909a832aadb41f2d0216867aa`);
 
     this.setState({
       comics: marvel_comics.data.data.results,
@@ -24,6 +25,13 @@ class CardsComicsComponent extends Component {
   }
 
   render() {
+
+    const { comics, itemsPerPage } = this.state;
+    const { currentPage } = this.props;
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const itemsToShow = comics.slice(indexOfFirstItem, indexOfLastItem);
     
     return(
       <>
@@ -34,7 +42,7 @@ class CardsComicsComponent extends Component {
         ) : (
           <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', flexWrap: 'wrap' }}>
             {
-              this.state.comics.map( (item, index) => {
+              itemsToShow.map( (item, index) => {
                 const image = item.thumbnail ? item.thumbnail.path + '.' + item.thumbnail.extension : null;
                 const title = item.title;
                 return(

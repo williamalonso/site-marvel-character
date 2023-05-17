@@ -11,10 +11,11 @@ const FooterContainer = styled.div`
   margin-top: 5rem;
 `;
 
-const FooterComponent = () => {
+const FooterComponent = ( {onPageChange} ) => {
   return(
     <FooterContainer>
-      Meu Footer
+      <button onClick = { () => onPageChange(1) }>Página 1</button>
+      <button onClick = { () => onPageChange(2) }>Página 2</button>
     </FooterContainer>
   );
 }
