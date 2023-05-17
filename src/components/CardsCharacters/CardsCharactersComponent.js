@@ -50,25 +50,6 @@ class CardsCharactersComponent extends Component {
   }
 
   render() {
-
-    const characters = this.state.characters;
-    const characterCards = [];
-
-    for(let i=0; i< characters.length; i++) {
-      characterCards.push(
-        <CardsCharactersContainer key={i}>
-          <Flipper>
-            <Front>
-              <CardsCharactersImage src={characters[i].character.image} alt="Imagem do Personagem"></CardsCharactersImage>
-            </Front>
-            <Back>
-              <CardsCharactersName>{characters[i].character.name}</CardsCharactersName>
-              <CardsCharactersDetail>{characters[i].character.description}</CardsCharactersDetail>
-            </Back>
-          </Flipper>
-        </CardsCharactersContainer>
-      );
-    }
   
     return (
       <>
@@ -78,7 +59,23 @@ class CardsCharactersComponent extends Component {
           <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}><i className="fas fa-spinner fa-spin fa-3x"></i></div>
         ) : (
           <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%' }}>
-          {characterCards}
+            {
+              this.state.characters.map( (item, index) => {
+                return(
+                  <CardsCharactersContainer key={index}>
+                    <Flipper>
+                      <Front>
+                        <CardsCharactersImage src={item.character.image} alt="Imagem do Personagem"></CardsCharactersImage>
+                      </Front>
+                      <Back>
+                        <CardsCharactersName>{item.character.name}</CardsCharactersName>
+                        <CardsCharactersDetail>{item.character.description}</CardsCharactersDetail>
+                      </Back>
+                    </Flipper>
+                  </CardsCharactersContainer>
+                )
+              })
+            }
           </div>
         )
       }
