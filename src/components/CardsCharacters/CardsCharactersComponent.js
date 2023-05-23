@@ -1,18 +1,20 @@
-import React, { Component } from "react";
+import Back from "./Back/Back";
+import Front from "./Front/Front";
 import api from '../../services/api';
+import Flipper from "./Flipper/Flipper";
+import React, { Component } from "react";
+import Container from 'react-bootstrap/Container';
 import CardsCharactersName from "./CardName/CardsCharactersName";
+import CardsCharactersImage from "./CardImage/CardsCharactersImage";
 import CardsCharactersDetail from "./CardDetail/CardsCharactersDetail";
 import CardsCharactersContainer from "./CardContainer/CardsCharactersContainer";
-import CardsCharactersImage from "./CardImage/CardsCharactersImage";
-import Flipper from "./Flipper/Flipper";
-import Front from "./Front/Front";
-import Back from "./Back/Back";
 
 class CardsCharactersComponent extends Component {
 
   state = {
     characters: [],
-    isLoading: true
+    isLoading: true,
+    itemsPerPage: 3,
   }
 
   async componentDidMount() {
@@ -50,6 +52,12 @@ class CardsCharactersComponent extends Component {
   }
 
   render() {
+
+    const { characters, itemsPerPage } = this.state;
+    const { currentPage } = this.props;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const itemsToShow = characters.slice(indexOfFirstItem, indexOfLastItem);
   
     return (
       <>
@@ -58,9 +66,9 @@ class CardsCharactersComponent extends Component {
         (
           <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}><i className="fas fa-spinner fa-spin fa-3x"></i></div>
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', flexWrap: 'wrap' }}>
+          <Container className="d-flex flex-wrap justify-content-evenly mt-5 ps-0 pe-0">
             {
-              this.state.characters.map( (item, index) => {
+              itemsToShow.map( (item, index) => {
                 return(
                   <CardsCharactersContainer key={index}>
                     <Flipper>
@@ -76,7 +84,7 @@ class CardsCharactersComponent extends Component {
                 )
               })
             }
-          </div>
+          </Container>
         )
       }
       </>

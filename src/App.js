@@ -1,5 +1,6 @@
 import './index.css';
 import React, {useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarComponent from './components/Navbar/NavbarComponent';
 import FooterComponent from './components/Footer/FooterComponent';
 import HeadlineComponent from './components/Headline/HeadlineComponent';
@@ -26,7 +27,8 @@ function App() {
       />
       <FooterComponent 
         currentPage={currentPage} 
-        onPageChange={handleChangePage} 
+        onPageChange={handleChangePage}
+        itemsPerPage={16}
       />
     </div>
   );

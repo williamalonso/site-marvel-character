@@ -11,11 +11,46 @@ const FooterContainer = styled.div`
   margin-top: 5rem;
 `;
 
-const FooterComponent = ( {onPageChange} ) => {
+const Arrow = styled.div`
+  width: 30px;
+  height: 30px;
+  background-color: var(--secondaryColor);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 50%;
+`;
+
+const Circle = styled.div`
+  width: 30px;
+  height: 30px;
+  background-color: var(--secondaryColor);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  font-size: 1rem;
+`;
+
+const FooterComponent = ( {currentPage, onPageChange, itemsPerPage} ) => {
+  
+  const handleChangePage = (pageNumber) => {
+    if(itemsPerPage < 16) {
+      return;
+    }
+    onPageChange(pageNumber);
+  }
+
   return(
     <FooterContainer>
-      <button onClick = { () => onPageChange(1) }>Página 1</button>
-      <button onClick = { () => onPageChange(2) }>Página 2</button>
+      <Arrow onClick = { () => handleChangePage(1) }>&lt;</Arrow>
+      <Circle>{currentPage}</Circle>
+      <Arrow onClick = { () => handleChangePage(2) }>&gt;</Arrow>
     </FooterContainer>
   );
 }

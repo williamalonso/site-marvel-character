@@ -20,7 +20,7 @@ const StaticTxt = styled.div`
 `;
 const DynamicTxt = styled.div`
   margin-left: 1rem;
-  height: 68px;
+  height: auto;
   overflow: hidden;
   @media (max-width: 600px) {
     height: 54px;
@@ -38,7 +38,7 @@ const DynamicTxt = styled.div`
     & span::after {
       content: '';
       position: absolute;
-      height: 100%;
+      height: 107%;
       width: 100%;
       left: 0;
       background-color: var(--secondaryColor);
