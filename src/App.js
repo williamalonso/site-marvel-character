@@ -28,7 +28,6 @@ function App() {
       <FooterComponent 
         currentPage={currentPage} 
         onPageChange={handleChangePage}
-        itemsPerPage={16}
       />
     </div>
   );

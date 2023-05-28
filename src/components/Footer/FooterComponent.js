@@ -39,18 +39,29 @@ const Circle = styled.div`
 
 const FooterComponent = ( {currentPage, onPageChange, itemsPerPage} ) => {
   
+
   const handleChangePage = (pageNumber) => {
+
+    if(pageNumber < 1) {
+      pageNumber = 1;
+    }
+
     if(itemsPerPage < 16) {
       return;
     }
+
+    if(pageNumber > 2) {
+      return;
+    }
+
     onPageChange(pageNumber);
   }
 
   return(
     <FooterContainer>
-      <Arrow onClick = { () => handleChangePage(1) }>&lt;</Arrow>
+      <Arrow onClick = { () => handleChangePage(currentPage-1) }>&lt;</Arrow>
       <Circle>{currentPage}</Circle>
-      <Arrow onClick = { () => handleChangePage(2) }>&gt;</Arrow>
+      <Arrow onClick = { () => handleChangePage(currentPage+1) }>&gt;</Arrow>
     </FooterContainer>
   );
 }
