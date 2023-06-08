@@ -1,5 +1,7 @@
-import styled from "styled-components";
 import React from "react";
+import { setPage } from '../../store';
+import styled from "styled-components";
+import { useSelector, useDispatch } from 'react-redux';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -37,8 +39,10 @@ const Circle = styled.div`
   font-size: 1rem;
 `;
 
-const FooterComponent = ( {currentPage, onPageChange, itemsPerPage} ) => {
+const FooterComponent = ({ itemsPerPage }) => {
   
+  const currentPage = useSelector( (state) => state.pageNumber.currentPage );
+  const dispatch = useDispatch();
 
   const handleChangePage = (pageNumber) => {
 
@@ -54,7 +58,7 @@ const FooterComponent = ( {currentPage, onPageChange, itemsPerPage} ) => {
       return;
     }
 
-    onPageChange(pageNumber);
+    dispatch(setPage(pageNumber));
   }
 
   return(

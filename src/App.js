@@ -1,5 +1,7 @@
 import './index.css';
-import React, {useState} from 'react';
+import React from 'react';
+import store from './store';
+import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavbarComponent from './components/Navbar/NavbarComponent';
 import FooterComponent from './components/Footer/FooterComponent';
@@ -8,28 +10,16 @@ import CardsComicsComponent from './components/CardsComics/CardsComicsComponent'
 
 function App() {
 
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleChangePage = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  }
-  
   return (
-    <div className="App">
+    <Provider store={store}>
       <NavbarComponent />
       <HeadlineComponent 
         txt="comics" 
         static="Você está na área"
       />
-      <CardsComicsComponent 
-        currentPage={currentPage} 
-        onPageChange={handleChangePage}
-      />
-      <FooterComponent 
-        currentPage={currentPage} 
-        onPageChange={handleChangePage}
-      />
-    </div>
+      <CardsComicsComponent />
+      <FooterComponent />
+    </Provider>
   );
 }
 
