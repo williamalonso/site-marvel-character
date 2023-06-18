@@ -1,34 +1,35 @@
-import React, {Component} from "react";
 import api from "../../services/api";
-import CardsCharactersContainer from "../CardsCharacters/CardContainer/CardsCharactersContainer";
-import CardsCharactersImage from "../CardsCharacters/CardImage/CardsCharactersImage";
-import CardsCharactersName from "../CardsCharacters/CardName/CardsCharactersName";
-import Flipper from "../CardsCharacters/Flipper/Flipper";
-import Front from "../CardsCharacters/Front/Front";
+import { connect } from 'react-redux';
+import React, {Component} from "react";
 import Back from "../CardsCharacters/Back/Back";
 import Container from 'react-bootstrap/Container';
+import Front from "../CardsCharacters/Front/Front";
+import { setComics, setLoading } from '../../store';
+import Flipper from "../CardsCharacters/Flipper/Flipper";
+import CardsCharactersName from "../CardsCharacters/CardName/CardsCharactersName";
+import CardsCharactersImage from "../CardsCharacters/CardImage/CardsCharactersImage";
+import CardsCharactersContainer from "../CardsCharacters/CardContainer/CardsCharactersContainer";
 
 class CardsComicsComponent extends Component {
-
-  state = {
-    comics: [],
-    isLoading: true,
-    itemsPerPage: 16,
-  }
 
   async componentDidMount() {
     const marvel_comics = await api.get(`v1/public/comics?limit=32&apikey=798484f909a832aadb41f2d0216867aa`);
 
-    this.setState({
-      comics: marvel_comics.data.data.results,
-      isLoading: false,
-    });
+    const { dispatch } = this.props;
+
+    dispatch( setComics(marvel_comics.data.data.results) );
+    dispatch( setLoading(false) );
+
   }
 
   render() {
 
-    const { comics, itemsPerPage } = this.state;
-    const { currentPage } = this.props;
+    const {
+      currentPage,
+      itemsPerPage,
+      comics,
+      isLoading,
+    } = this.props;    
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -37,7 +38,7 @@ class CardsComicsComponent extends Component {
     return(
       <>
       {
-        this.state.isLoading ? 
+        isLoading ? 
         (
           <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}><i className="fas fa-spinner fa-spin fa-3x"></i></div>
         ) : (
@@ -68,4 +69,11 @@ class CardsComicsComponent extends Component {
   }
 }
 
-export default CardsComicsComponent;
+const mapStateToProps = (state) => ({
+  currentPage: state.footer.currentPage,
+  itemsPerPage: state.cardsComics.itemsPerPage,
+  comics: state.cardsComics.comics,
+  isLoading: state.cardsComics.isLoading,
+});
+
+export default connect(mapStateToProps)(CardsComicsComponent);

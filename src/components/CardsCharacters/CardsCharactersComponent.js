@@ -1,21 +1,17 @@
 import Back from "./Back/Back";
 import Front from "./Front/Front";
 import api from '../../services/api';
+import { connect } from 'react-redux';
 import Flipper from "./Flipper/Flipper";
 import React, { Component } from "react";
 import Container from 'react-bootstrap/Container';
+import { setAvengers, setAvLoading } from "../../store";
 import CardsCharactersName from "./CardName/CardsCharactersName";
 import CardsCharactersImage from "./CardImage/CardsCharactersImage";
 import CardsCharactersDetail from "./CardDetail/CardsCharactersDetail";
 import CardsCharactersContainer from "./CardContainer/CardsCharactersContainer";
 
 class CardsCharactersComponent extends Component {
-
-  state = {
-    characters: [],
-    isLoading: true,
-    itemsPerPage: 3,
-  }
 
   async componentDidMount() {
 
@@ -46,15 +42,23 @@ class CardsCharactersComponent extends Component {
       { id: 1, character: captainAmerica },
       { id: 2, character: Thor }
     ];
-    
-    this.setState({ characters, isLoading: false });
+
+    const { dispatch } = this.props;
+
+    dispatch( setAvengers(characters) );
+    dispatch( setAvLoading(false) );
 
   }
 
   render() {
 
-    const { characters, itemsPerPage } = this.state;
-    const { currentPage } = this.props;
+    const {
+      currentPage,
+      itemsPerPage,
+      characters,
+      isLoading,
+    } = this.props;
+
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const itemsToShow = characters.slice(indexOfFirstItem, indexOfLastItem);
@@ -62,7 +66,7 @@ class CardsCharactersComponent extends Component {
     return (
       <>
       {
-        this.state.isLoading ? 
+        isLoading ? 
         (
           <div style={{display:'flex', justifyContent:'center', alignItems:'center', height:'100vh'}}><i className="fas fa-spinner fa-spin fa-3x"></i></div>
         ) : (
@@ -93,4 +97,11 @@ class CardsCharactersComponent extends Component {
   }
 }
 
-export default CardsCharactersComponent;
+const mapStateToProps = (state) => ({
+  currentPage: state.footer.currentPage,
+  itemsPerPage: state.cardsAvengers.itemsPerPage,
+  characters: state.cardsAvengers.characters,
+  isLoading: state.cardsAvengers.isLoading,
+});
+
+export default connect(mapStateToProps)(CardsCharactersComponent);
