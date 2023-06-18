@@ -1,14 +1,52 @@
-import styled from "styled-components";
 import React from "react";
+import { setPage } from "../../store";
+import Nav from 'react-bootstrap/Nav';
+import styled from "styled-components";
+import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
-const NavbarContainer = styled.div`
+const NavbarContainer = styled(Navbar)`
   display: flex;
   justify-content: start;
   align-items: center;
   color: var(--white);
   background-color: var(--primaryColor);
   padding: 2rem;
+`;
+
+const StyledNavbarBrand = styled(Navbar.Brand)`
+  color: var(--headline);
+  &:hover {
+    color: var(--headline);
+  }
+`;
+
+const StyledNavbarToggle = styled(Navbar.Toggle)`
+  background-color: var(--primaryColor);
+  span.navbar-toggler-icon {
+    background-color: var(--primaryColor);
+  }
+`;
+
+const StyledNavbarCollapse = styled(Navbar.Collapse)`
+  margin-top: 10px;
+  && .sc-iVCKna {
+    margin-top: 10px;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  color: var(--headline);
+  border: var(--bs-btn-border-width) solid var(--headline);
+  &:hover,
+  &:active {
+    background-color: var(--headline)!important;
+    border: var(--bs-btn-border-width) solid var(--headline)!important;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -29,14 +67,37 @@ const StyledLink = styled(Link)`
 `;
 
 const NavbarComponent = () => {
+  const dispatch = useDispatch();
+
   return(
-    <NavbarContainer>
-      <StyledLink to="/">
-        Comics
-      </StyledLink>
-      <StyledLink to="/avengers">
-        Vingadores
-      </StyledLink>
+    <NavbarContainer expand="lg">
+      <Container fluid style={{ backgroundColor: 'var(--primaryColor)' }}>
+        <StyledNavbarBrand href="/" style={{ backgroundColor: 'var(--primaryColor)', fontSize: '40px' }}>Marvel App</StyledNavbarBrand>
+        <StyledNavbarToggle aria-controls="navbarScroll" style={{ backgroundColor: 'var(--primaryColor)' }} />
+        <StyledNavbarCollapse id="navbarScroll" style={{ backgroundColor: 'var(--primaryColor)' }}>
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px', backgroundColor: 'var(--primaryColor)' }}
+            navbarScroll
+          >
+            <StyledLink to="/" onClick={dispatch(setPage(1))}>
+              Comics
+            </StyledLink>
+            <StyledLink to="/avengers" onClick={dispatch(setPage(1))}>
+              Vingadores
+            </StyledLink>
+          </Nav>
+          <Form className="d-flex" style={{ backgroundColor: 'var(--primaryColor)' }}>
+            <Form.Control
+              type="search"
+              placeholder="Digite aqui"
+              className="me-2"
+              aria-label="Search"
+            />
+            <StyledButton variant="outline-success">Pesquisar</StyledButton>
+          </Form>
+        </StyledNavbarCollapse>
+      </Container>
     </NavbarContainer>
   );
 }
