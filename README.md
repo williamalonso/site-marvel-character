@@ -39,6 +39,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - É possível pesquisar por personagens/comics específicos;
 - Ao passar o mouse em um card, ele gira para exibir dados;
 - Há um botão de loading enquanto os dados são carregados da API;
+- Se estiver na página 2 e trocar de URL, você irá para a página 1;
 
 ---
 
