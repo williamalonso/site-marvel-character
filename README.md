@@ -49,6 +49,10 @@ A versão React do projeto é a `18.2.0`.
 
 A versão do React Bootstrap é a `2.7.4`.
 
+A versão do Redux é a `8.0.7`;
+
+A versão do Styled-Component é a `5.3.10`;
+
 A versão do Node é `16.17.0`.
 
 Caso queira, clone ou faça o downlod desse repositório:
