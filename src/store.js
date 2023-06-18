@@ -4,6 +4,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const footerState = {
   currentPage: 1,
+  currentPageURL: '/',
 };
 
 const footerSlice = createSlice({ // criando o slice
@@ -12,11 +13,14 @@ const footerSlice = createSlice({ // criando o slice
   reducers: {
     setPage: (state, action) => {
       state.currentPage = action.payload;
+    },
+    setCurrentPageURL: (state, action) => {
+      state.currentPageURL = action.payload;
     }
   }
 });
 
-export const { setPage } = footerSlice.actions;
+export const { setPage, setCurrentPageURL } = footerSlice.actions;
 
 /* ===== Comics State ===== */
 

@@ -16,9 +16,7 @@ const ContentComponent = () => {
         static="Você está na área"
       />
       <CardsCharactersComponent/>
-      <FooterComponent
-        itemsPerPage={3}
-      />
+      <FooterComponent/>
     </Provider>
   );
 }

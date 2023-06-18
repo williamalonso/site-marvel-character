@@ -1,7 +1,8 @@
-import React from "react";
-import { setPage } from '../../store';
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { setCurrentPageURL, setPage } from '../../store';
 import { useSelector, useDispatch } from 'react-redux';
+
 
 const FooterContainer = styled.div`
   display: flex;
@@ -39,9 +40,10 @@ const Circle = styled.div`
   font-size: 1rem;
 `;
 
-const FooterComponent = ({ itemsPerPage }) => {
-  console.log(itemsPerPage);
+const FooterComponent = () => {
+  
   const currentPage = useSelector( (state) => state.footer.currentPage );
+  const currentPageURL = useSelector( (state) => state.footer.currentPageURL );
   const dispatch = useDispatch();
 
   const handleChangePage = (pageNumber) => {
@@ -51,20 +53,24 @@ const FooterComponent = ({ itemsPerPage }) => {
       behavior: 'smooth'
     });
 
-    if(pageNumber < 1) {
+    if( pageNumber < 1 ) {
       pageNumber = 1;
     }
 
-    if(itemsPerPage < 16) {
+    if( currentPageURL === '/avengers' ) {
       return;
     }
 
-    if(pageNumber > 2) {
+    if( pageNumber > 2 ) {
       return;
     }
 
     dispatch(setPage(pageNumber));
   }
+
+  useEffect( () => {
+    dispatch(setCurrentPageURL(window.location.pathname));
+  });
 
   return(
     <FooterContainer>
