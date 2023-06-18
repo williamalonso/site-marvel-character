@@ -40,11 +40,16 @@ const Circle = styled.div`
 `;
 
 const FooterComponent = ({ itemsPerPage }) => {
-  
-  const currentPage = useSelector( (state) => state.pageNumber.currentPage );
+  console.log(itemsPerPage);
+  const currentPage = useSelector( (state) => state.footer.currentPage );
   const dispatch = useDispatch();
 
   const handleChangePage = (pageNumber) => {
+    
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
 
     if(pageNumber < 1) {
       pageNumber = 1;

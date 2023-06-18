@@ -1,12 +1,14 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const initialPageState = {
+/* ===== Footer State ===== */
+
+const footerState = {
   currentPage: 1,
 };
 
-const pageNumberSlice = createSlice({ // criando o slice
-  name: 'pageNumber', // nome do slice
-  initialState: initialPageState, // estado inicial
+const footerSlice = createSlice({ // criando o slice
+  name: 'footer', // nome do slice
+  initialState: footerState, // estado inicial
   reducers: {
     setPage: (state, action) => {
       state.currentPage = action.payload;
@@ -14,8 +16,9 @@ const pageNumberSlice = createSlice({ // criando o slice
   }
 });
 
-export const { setPage } = pageNumberSlice.actions;
+export const { setPage } = footerSlice.actions;
 
+/* ===== Comics State ===== */
 
 const cardsComicsState = {
   comics: [],
@@ -41,10 +44,39 @@ const cardsComicsSlice = createSlice({
 
 export const { setComics, setLoading, setItemsPerPage } = cardsComicsSlice.actions;
 
+/* ===== Avengers State ===== */
+
+const cardsAvengersState = {
+  characters: [],
+  isLoading: true,
+  itemsPerPage: 3,
+}
+
+const cardsAvengersSlice = createSlice({
+  name: 'cardsAvengers',
+  initialState: cardsAvengersState,
+  reducers: {
+    setAvengers: (state, action) => {
+      state.characters = action.payload;
+    },
+    setAvLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
+    setAvItemsPerPage: (state, action) => {
+      state.itemsPerPage = action.payload;
+    }
+  }
+});
+
+export const { setAvengers, setAvLoading, setAvItemsPerPage } = cardsAvengersSlice.actions;
+
+/* ===== Store Config ===== */
+
 const store = configureStore({
   reducer: {
-    pageNumber: pageNumberSlice.reducer,
+    footer: footerSlice.reducer,
     cardsComics: cardsComicsSlice.reducer,
+    cardsAvengers: cardsAvengersSlice.reducer,
   }
 });
 

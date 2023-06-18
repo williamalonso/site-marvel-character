@@ -1,31 +1,25 @@
-import React, {useState} from "react";
-import CardsCharactersComponent from "../CardsCharacters/CardsCharactersComponent";
-import NavbarComponent from "../Navbar/NavbarComponent";
+import React from "react";
+import store from "../../store";
+import { Provider } from 'react-redux';
 import FooterComponent from "../Footer/FooterComponent";
+import NavbarComponent from "../Navbar/NavbarComponent";
 import HeadlineComponent from "../Headline/HeadlineComponent";
+import CardsCharactersComponent from "../CardsCharacters/CardsCharactersComponent";
 
 const ContentComponent = () => {
-
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleChangePage = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  }
   
   return(
-    <>
-      <NavbarComponent></NavbarComponent>
-      <HeadlineComponent txt="vingadores" static="Você está na área"></HeadlineComponent>
-      <CardsCharactersComponent
-        currentPage={currentPage}
-        onPageChange={handleChangePage}
+    <Provider store={store}>
+      <NavbarComponent/>
+      <HeadlineComponent 
+        txt="vingadores" 
+        static="Você está na área"
       />
+      <CardsCharactersComponent/>
       <FooterComponent
-        currentPage={currentPage}
-        onPageChange={handleChangePage}
         itemsPerPage={3}
       />
-    </>
+    </Provider>
   );
 }
 

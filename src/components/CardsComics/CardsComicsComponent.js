@@ -24,12 +24,12 @@ class CardsComicsComponent extends Component {
 
   render() {
 
-  const {
-    currentPage,
-    itemsPerPage,
-    comics,
-    isLoading,
-  } = this.props;    
+    const {
+      currentPage,
+      itemsPerPage,
+      comics,
+      isLoading,
+    } = this.props;    
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -70,7 +70,7 @@ class CardsComicsComponent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentPage: state.pageNumber.currentPage,
+  currentPage: state.footer.currentPage,
   itemsPerPage: state.cardsComics.itemsPerPage,
   comics: state.cardsComics.comics,
   isLoading: state.cardsComics.isLoading,

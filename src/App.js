@@ -18,7 +18,9 @@ function App() {
         static="Você está na área"
       />
       <CardsComicsComponent />
-      <FooterComponent />
+      <FooterComponent
+        itemsPerPage={16}
+      />
     </Provider>
   );
 }
