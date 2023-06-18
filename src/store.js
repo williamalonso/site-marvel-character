@@ -1,5 +1,22 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
+/* ===== Form Search State ===== */
+const formState = {
+  searchTerm: '',
+}
+
+const formSlice = createSlice({
+  name: 'form',
+  initialState: formState,
+  reducers: {
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    }
+  }
+});
+
+export const { setSearchTerm } = formSlice.actions
+
 /* ===== Footer State ===== */
 
 const footerState = {
@@ -81,6 +98,7 @@ const store = configureStore({
     footer: footerSlice.reducer,
     cardsComics: cardsComicsSlice.reducer,
     cardsAvengers: cardsAvengersSlice.reducer,
+    form: formSlice.reducer
   }
 });
 

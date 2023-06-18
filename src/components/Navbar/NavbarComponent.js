@@ -2,12 +2,15 @@ import React from "react";
 import { setPage } from "../../store";
 import Nav from 'react-bootstrap/Nav';
 import styled from "styled-components";
-import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import Form from 'react-bootstrap/Form';
+import { setAvengers } from "../../store";
 import Navbar from 'react-bootstrap/Navbar';
+import { setSearchTerm } from "../../store";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import formService from "../../services/formService";
+import { useDispatch, useSelector  } from "react-redux";
 
 const NavbarContainer = styled(Navbar)`
   display: flex;
@@ -68,6 +71,26 @@ const StyledLink = styled(Link)`
 
 const NavbarComponent = () => {
   const dispatch = useDispatch();
+  const searchTerm = useSelector( (state) => state.form.searchTerm);
+
+  const handleSearch = async() => {
+    try {
+      const response = await formService.getData(searchTerm);
+      console.log(response);
+      if(response.data.data.results == '') {
+        alert('Não encontrado');
+      }
+      // const searchCharacter = {
+      //   image: response.data.data.results[0].thumbnail.path + '.' + response.data.data.results[0].thumbnail.extension,
+      //   name: response.data.data.results[0].name,
+      //   description: response.data.data.results[0].description
+      // };
+      
+      // dispatch(setAvengers(searchCharacter));
+    } catch {
+      alert('Não encontrado');
+    }
+  };
 
   return(
     <NavbarContainer expand="lg">
@@ -93,8 +116,10 @@ const NavbarComponent = () => {
               placeholder="Digite aqui"
               className="me-2"
               aria-label="Search"
+              value={searchTerm}
+              onChange={ e => dispatch(setSearchTerm(e.target.value)) }
             />
-            <StyledButton variant="outline-success">Pesquisar</StyledButton>
+            <StyledButton variant="outline-success" onClick={handleSearch}>Pesquisar</StyledButton>
           </Form>
         </StyledNavbarCollapse>
       </Container>
