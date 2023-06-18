@@ -53,7 +53,7 @@ export const { setComics, setLoading, setItemsPerPage } = cardsComicsSlice.actio
 const cardsAvengersState = {
   characters: [],
   isLoading: true,
-  itemsPerPage: 3,
+  itemsPerPage: 6,
 }
 
 const cardsAvengersSlice = createSlice({

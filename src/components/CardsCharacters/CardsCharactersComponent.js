@@ -16,13 +16,23 @@ class CardsCharactersComponent extends Component {
   async componentDidMount() {
 
     const ironMan_api = await api.get('v1/public/characters?name=Iron%20Man&apikey=798484f909a832aadb41f2d0216867aa');
+    const hulk_api = await api.get('v1/public/characters?name=hulk&apikey=798484f909a832aadb41f2d0216867aa');
     const captainAmerica_api = await api.get('v1/public/characters?name=Captain%20America&apikey=798484f909a832aadb41f2d0216867aa');
     const thor_api = await api.get('v1/public/characters?name=Thor&apikey=798484f909a832aadb41f2d0216867aa');
+    const hawkeye_api = await api.get('v1/public/characters?name=hawkeye&apikey=798484f909a832aadb41f2d0216867aa');
+    const blackWidow_api = await api.get('v1/public/characters?name=Black%20Widow&apikey=798484f909a832aadb41f2d0216867aa');
+
 
     const ironMan = {
       image: ironMan_api.data.data.results[0].thumbnail.path + '.' + ironMan_api.data.data.results[0].thumbnail.extension,
       name: ironMan_api.data.data.results[0].name,
       description: ironMan_api.data.data.results[0].description
+    }
+
+    const Hulk = {
+      image: hulk_api.data.data.results[0].thumbnail.path + '.' + hulk_api.data.data.results[0].thumbnail.extension,
+      name: hulk_api.data.data.results[0].name,
+      description: hulk_api.data.data.results[0].description
     }
 
     const captainAmerica = {
@@ -37,10 +47,25 @@ class CardsCharactersComponent extends Component {
       description: thor_api.data.data.results[0].description
     };
 
+    const Hawkeye = {
+      image: hawkeye_api.data.data.results[0].thumbnail.path + '.' + hawkeye_api.data.data.results[0].thumbnail.extension,
+      name: hawkeye_api.data.data.results[0].name,
+      description: hawkeye_api.data.data.results[0].description
+    };
+
+    const BlackWidow = {
+      image: blackWidow_api.data.data.results[0].thumbnail.path + '.' + blackWidow_api.data.data.results[0].thumbnail.extension,
+      name: blackWidow_api.data.data.results[0].name,
+      description: blackWidow_api.data.data.results[0].description
+    };
+
     const characters = [
       { id: 0, character: ironMan },
       { id: 1, character: captainAmerica },
-      { id: 2, character: Thor }
+      { id: 2, character: Thor },
+      { id: 3, character: Hulk },
+      { id: 4, character: Hawkeye },
+      { id: 5, character: BlackWidow },
     ];
 
     const { dispatch } = this.props;
