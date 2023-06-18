@@ -37,6 +37,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Os estados são geridos pelo Redux;
 - A página inicial lista Comics da Marvel;
 - É possível pesquisar por personagens/comics específicos;
+- Ao passar o mouse em um card, ele gira para exibir dados;
 - Há um botão de loading enquanto os dados são carregados da API;
 
 ---
