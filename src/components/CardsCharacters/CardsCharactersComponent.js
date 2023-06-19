@@ -70,6 +70,21 @@ class CardsCharactersComponent extends Component {
 
     const {searchTerm, changeContent, dispatch} = this.props;
     if(searchTerm && changeContent) {
+      // formService.getCharacter(searchTerm)
+      // .then( response => {
+      //   const characterData = response.data.data.results[0];
+      //   const newCharacter = {
+      //     id: 0,
+      //     character: {
+      //       image: characterData.thumbnail.path + '.' + characterData.thumbnail.extension,
+      //       name: characterData.name,
+      //       description: characterData.description,
+      //     }
+      //   }
+      //   dispatch(setAvengers([newCharacter]));
+      // }).catch( error => {
+      //   console.error('Erro ao buscar personagem: ', error);
+      // });
       const newCharacter = { id: 2, character: { image: '', name: searchTerm, description: 'o incrível Hulk' } };
       dispatch(setAvengers([newCharacter]));
       dispatch( setAvLoading(false) );
@@ -86,12 +101,25 @@ class CardsCharactersComponent extends Component {
   }
 
   async componentDidUpdate(prevProps) {
-    const { changeContent, searchTerm, characters, dispatch } = this.props;
-    // console.log(searchTerm);
-    // console.log(characters);
-    // console.log(changeContent);
+
+    const { changeContent, searchTerm, dispatch } = this.props;
+    
     if( changeContent && changeContent !==  prevProps.changeContent ) {
-      console.log('entrou');
+      // formService.getCharacter(searchTerm)
+      // .then( response => {
+      //   const characterData = response.data.data.results[0];
+      //   const newCharacter = {
+      //     id: 0,
+      //     character: {
+      //       image: characterData.thumbnail.path + '.' + characterData.thumbnail.extension,
+      //       name: characterData.name,
+      //       description: characterData.description,
+      //     }
+      //   }
+      //   dispatch(setAvengers([newCharacter]));
+      // }).catch( error => {
+      //   console.error('Erro ao buscar personagem: ', error);
+      // });
       const newCharacter = { id: 2, character: { image: '', name: searchTerm, description: 'o incrível Hulk' } };
       dispatch(setAvengers([newCharacter]));
     }
