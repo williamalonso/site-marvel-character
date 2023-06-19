@@ -4,7 +4,6 @@ import Nav from 'react-bootstrap/Nav';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
-import { setAvengers } from "../../store";
 import Navbar from 'react-bootstrap/Navbar';
 import { setSearchTerm } from "../../store";
 import Button from 'react-bootstrap/Button';
@@ -72,23 +71,25 @@ const StyledLink = styled(Link)`
 const NavbarComponent = () => {
   const dispatch = useDispatch();
   const searchTerm = useSelector( (state) => state.form.searchTerm);
+  const currentPageURL = useSelector( (state) => state.footer.currentPageURL );
 
   const handleSearch = async() => {
     try {
-      const response = await formService.getData(searchTerm);
-      console.log(response);
-      if(response.data.data.results == '') {
-        alert('Não encontrado');
+      if(currentPageURL === '/avengers'){
+        const response = await formService.getCharacter(searchTerm);
+        console.log(response);
+        if(response.data.data.results.length === 0) {
+          alert('Não encontrado');
+        }
+      } else {
+        const response = await formService.getComics(searchTerm);
+        console.log(response);
+        if(response.data.data.results.length === 0) {
+          alert('Não encontrado');
+        }
       }
-      // const searchCharacter = {
-      //   image: response.data.data.results[0].thumbnail.path + '.' + response.data.data.results[0].thumbnail.extension,
-      //   name: response.data.data.results[0].name,
-      //   description: response.data.data.results[0].description
-      // };
-      
-      // dispatch(setAvengers(searchCharacter));
     } catch {
-      alert('Não encontrado');
+      alert('Erro ao pesquisar');
     }
   };
 
@@ -103,10 +104,10 @@ const NavbarComponent = () => {
             style={{ maxHeight: '100px', backgroundColor: 'var(--primaryColor)' }}
             navbarScroll
           >
-            <StyledLink to="/" onClick={dispatch(setPage(1))}>
+            <StyledLink to="/" onClick={() => dispatch(setPage(1))}>
               Comics
             </StyledLink>
-            <StyledLink to="/avengers" onClick={dispatch(setPage(1))}>
+            <StyledLink to="/avengers" onClick={() => dispatch(setPage(1))}>
               Vingadores
             </StyledLink>
           </Nav>

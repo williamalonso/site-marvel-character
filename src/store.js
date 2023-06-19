@@ -15,7 +15,7 @@ const formSlice = createSlice({
   }
 });
 
-export const { setSearchTerm } = formSlice.actions
+export const { setSearchTerm } = formSlice.actions;
 
 /* ===== Footer State ===== */
 
