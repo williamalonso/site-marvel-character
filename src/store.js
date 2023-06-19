@@ -3,6 +3,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 /* ===== Form Search State ===== */
 const formState = {
   searchTerm: '',
+  changeContent: false,
 }
 
 const formSlice = createSlice({
@@ -11,11 +12,14 @@ const formSlice = createSlice({
   reducers: {
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
+    },
+    setChangeContent: (state, action) => {
+      state.changeContent = action.payload;
     }
   }
 });
 
-export const { setSearchTerm } = formSlice.actions;
+export const { setSearchTerm, setChangeContent } = formSlice.actions;
 
 /* ===== Footer State ===== */
 
@@ -98,7 +102,7 @@ const store = configureStore({
     footer: footerSlice.reducer,
     cardsComics: cardsComicsSlice.reducer,
     cardsAvengers: cardsAvengersSlice.reducer,
-    form: formSlice.reducer
+    form: formSlice.reducer,
   }
 });
 

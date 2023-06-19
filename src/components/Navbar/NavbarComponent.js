@@ -1,5 +1,4 @@
 import React from "react";
-import { setPage } from "../../store";
 import Nav from 'react-bootstrap/Nav';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -8,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { setSearchTerm } from "../../store";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import formService from "../../services/formService";
+import { setChangeContent, setPage } from "../../store";
 import { useDispatch, useSelector  } from "react-redux";
 
 const NavbarContainer = styled(Navbar)`
@@ -71,26 +70,9 @@ const StyledLink = styled(Link)`
 const NavbarComponent = () => {
   const dispatch = useDispatch();
   const searchTerm = useSelector( (state) => state.form.searchTerm);
-  const currentPageURL = useSelector( (state) => state.footer.currentPageURL );
-
+  
   const handleSearch = async() => {
-    try {
-      if(currentPageURL === '/avengers'){
-        const response = await formService.getCharacter(searchTerm);
-        console.log(response);
-        if(response.data.data.results.length === 0) {
-          alert('Não encontrado');
-        }
-      } else {
-        const response = await formService.getComics(searchTerm);
-        console.log(response);
-        if(response.data.data.results.length === 0) {
-          alert('Não encontrado');
-        }
-      }
-    } catch {
-      alert('Erro ao pesquisar');
-    }
+    dispatch(setChangeContent(true));
   };
 
   return(
@@ -120,7 +102,7 @@ const NavbarComponent = () => {
               value={searchTerm}
               onChange={ e => dispatch(setSearchTerm(e.target.value)) }
             />
-            <StyledButton variant="outline-success" onClick={handleSearch}>Pesquisar</StyledButton>
+            <StyledButton variant="outline-success" onClick={() => handleSearch()}>Pesquisar</StyledButton>
           </Form>
         </StyledNavbarCollapse>
       </Container>
