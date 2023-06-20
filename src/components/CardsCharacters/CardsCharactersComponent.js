@@ -75,6 +75,7 @@ class CardsCharactersComponent extends Component {
           }
         }
         dispatch(setAvengers([newCharacter]));
+        dispatch( setAvLoading(false) );
       }).catch( error => {
         console.error('Erro ao buscar personagem: ', error);
       });
@@ -111,6 +112,7 @@ class CardsCharactersComponent extends Component {
           }
         }
         dispatch(setAvengers([newCharacter]));
+        dispatch( setAvLoading(false) );
       }).catch( error => {
         console.error('Erro ao buscar personagem: ', error);
       });

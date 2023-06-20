@@ -5,6 +5,7 @@ import Back from "../CardsCharacters/Back/Back";
 import Container from 'react-bootstrap/Container';
 import Front from "../CardsCharacters/Front/Front";
 import { setComics, setLoading } from '../../store';
+import formService from '../../services/formService';
 import Flipper from "../CardsCharacters/Flipper/Flipper";
 import CardsCharactersName from "../CardsCharacters/CardName/CardsCharactersName";
 import CardsCharactersImage from "../CardsCharacters/CardImage/CardsCharactersImage";
@@ -13,13 +14,43 @@ import CardsCharactersContainer from "../CardsCharacters/CardContainer/CardsChar
 class CardsComicsComponent extends Component {
 
   async componentDidMount() {
-    const marvel_comics = await api.get(`v1/public/comics?limit=32&apikey=798484f909a832aadb41f2d0216867aa`);
 
-    const { dispatch } = this.props;
+    const {searchTerm, changeContent, dispatch} = this.props;
 
-    dispatch( setComics(marvel_comics.data.data.results) );
-    dispatch( setLoading(false) );
+    if( searchTerm && changeContent ) {
+      formService.getComics(searchTerm)
+      .then( response => {
+        const comicsData = response.data.data.results[0];
+        dispatch(setComics([comicsData]));
+        dispatch( setLoading(false) );
+      }).catch( error => {
+        console.error('Erro ao buscar personagem: ', error);
+      });
+    } else {
+      const marvel_comics = await api.get(`v1/public/comics?limit=32&apikey=798484f909a832aadb41f2d0216867aa`);
+      
+      const { dispatch } = this.props;
 
+      dispatch( setComics(marvel_comics.data.data.results) );
+      dispatch( setLoading(false) );
+    }
+
+  }
+
+  async componentDidUpdate(prevProps) {
+    
+    const { changeContent, searchTerm, dispatch } = this.props;
+    
+    if( changeContent && changeContent !==  prevProps.changeContent ) {
+      formService.getComics(searchTerm)
+      .then( response => {
+        const comicsData = response.data.data.results[0];
+        dispatch(setComics([comicsData]));
+        dispatch( setLoading(false) );
+      }).catch( error => {
+        console.error('Erro ao buscar comics: ', error);
+      });
+    }
   }
 
   render() {
@@ -74,6 +105,8 @@ const mapStateToProps = (state) => ({
   itemsPerPage: state.cardsComics.itemsPerPage,
   comics: state.cardsComics.comics,
   isLoading: state.cardsComics.isLoading,
+  changeContent: state.form.changeContent,
+  searchTerm: state.form.searchTerm,
 });
 
 export default connect(mapStateToProps)(CardsComicsComponent);
