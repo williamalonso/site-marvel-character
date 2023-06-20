@@ -44,8 +44,9 @@ const FooterComponent = () => {
   
   const currentPage = useSelector( (state) => state.footer.currentPage );
   const currentPageURL = useSelector( (state) => state.footer.currentPageURL );
+  const comics = useSelector( (state) => state.cardsComics.comics );
   const dispatch = useDispatch();
-
+  
   const handleChangePage = (pageNumber) => {
     
     window.scrollTo({
@@ -58,6 +59,10 @@ const FooterComponent = () => {
     }
 
     if( currentPageURL === '/avengers' ) {
+      return;
+    }
+
+    if( comics.length < 16 ) {
       return;
     }
 
