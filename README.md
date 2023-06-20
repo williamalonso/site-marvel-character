@@ -32,15 +32,16 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ### ✨ Sobre a construção do projeto:
 
-- Há paginação;
-- Há roteamento;
 - Os estados são geridos pelo Redux;
 - A página inicial lista Comics da Marvel;
-- É possível pesquisar por personagens/comics específicos;
-- Ao passar o mouse em um card, ele gira para exibir dados;
+- A página '/avengers' lista os vingadores originais;
 - Há um botão de loading enquanto os dados são carregados da API;
-- Se estiver na página 2 e trocar de URL, você irá para a página 1;
+- Ao passar o mouse em um card, ele gira para exibir dados;
 - A página inicial exibe apenas até a página 2, para simplicidade do projeto;
+- Se estiver na página 2 e trocar de URL, você irá para a página 1;
+- Ao pesquisar por um termo, será exibido apenas 1 card com o termo e a paginação trava na página 1;
+- Ao pesquisar por exemplo por "storm" a página inicial lista um quadrinho com esse título e a página 'avengers' lista um personagem com esse nome. Você pode alternar entre as páginas e cada uma exibe seu respectivo card;
+- Ao apagar o termo pesquisado, e trocar a página, os cards voltam a ser exibidos normalmente;
 
 ---
 
