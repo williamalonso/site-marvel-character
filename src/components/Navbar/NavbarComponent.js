@@ -72,7 +72,11 @@ const NavbarComponent = () => {
   const searchTerm = useSelector( (state) => state.form.searchTerm);
   
   const handleSearch = async() => {
-    dispatch(setChangeContent(true));
+    if(searchTerm) {
+      dispatch(setChangeContent(true));
+    } else {
+      dispatch(setChangeContent(false));
+    }
   };
 
   return(
@@ -93,7 +97,11 @@ const NavbarComponent = () => {
               Vingadores
             </StyledLink>
           </Nav>
-          <Form className="d-flex" style={{ backgroundColor: 'var(--primaryColor)' }}>
+          <Form className="d-flex" style={{ backgroundColor: 'var(--primaryColor)' }} onSubmit={e => {
+            // previne o formulário de enviar e alterar a url para "http://localhost:3000/avengers?" o que atrapalha na visualização do card pesquisado
+            e.preventDefault();
+            handleSearch();
+          }}>
             <Form.Control
               type="search"
               placeholder="Digite aqui"
